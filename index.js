@@ -19,7 +19,6 @@ app.get('/movies/:pageNumber',(req,res)=>{
             title = a.find('a').text().trim();
             img=a.find('.featured-thumbnail img').attr('src')
             weburl=a.find('a').attr('href')
-            console.log('data is '+title+img+weburl);
             titlelist[i]=title
             imglist[i]=img
             urllist[i]=weburl
@@ -36,6 +35,43 @@ app.get('/movies/:pageNumber',(req,res)=>{
         if(data!=null) res.status(200).send(data)
         else res.json({"error":"Api is down"})
         empty()
+    })
+})
+
+app.get('/movie/*',(req,res)=>{
+    var url=req.params[0]
+    request(url,async (error,response,html)=>{
+        if(error) return error
+        
+    
+        var $=cheerio.load(html)
+        var movieName=$('.imdbwp__title').text().trim()
+        var movieRuntime=$('.imdbwp__meta').find('span').eq(0).text().trim()
+        var moiveGenre=$('.imdbwp__meta').find('span').eq(1).text().trim()
+        var movieYear=$('.imdbwp__meta').find('span').eq(2).text().trim()
+        var movieDirector=$('.imdbwp__footer').find('span').eq(0).text().trim()
+        var movieCreator=$('.imdbwp__footer').find('span').eq(1).text().trim()
+        var movieActors=$('.imdbwp__footer').find('span').eq(2).text().trim()
+        var moviePlot=$('div.single_post > div > div.thecontent.clearfix > p:nth-child(9)').text()
+        var imgOne=$('div.single_post > div > div.thecontent.clearfix > figure:nth-child(13)').find('img').attr('src')
+        var imgTwo=$('div.single_post > div > div.thecontent.clearfix > figure:nth-child(14)').find('img').attr('src')
+        var imgThree=$('div.single_post > div > div.thecontent.clearfix > figure:nth-child(15)').find('img').attr('src')
+        var imgFour=$('div.single_post > div > div.thecontent.clearfix > figure:nth-child(16)').find('img').attr('src')
+        var data={
+            "movieName":movieName,
+            "movieRuntime":movieRuntime,
+            "moiveGenre":moiveGenre,
+            "movieCreator":movieCreator,
+            "movieYear":movieYear,
+            "movieDirector":movieDirector,
+            "movieActors":movieActors,
+            "moviePlot":moviePlot,
+            "imgOne":imgOne,
+            "imgTwo":imgTwo,
+            "imgThree":imgThree,
+            "imgFour":imgFour,
+        }
+        res.json(data)
     })
 })
 app.listen(8000,()=>{
