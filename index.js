@@ -47,8 +47,9 @@ app.get('/movie/*',(req,res)=>{
         var $=cheerio.load(html)
         var movieName=$('.imdbwp__title').text().trim()
         var movieRuntime=$('.imdbwp__meta').find('span').eq(0).text().trim()
-        var moiveGenre=$('.imdbwp__meta').find('span').eq(1).text().trim()
+        var movieGenre=$('.imdbwp__meta').find('span').eq(1).text().trim()
         var movieYear=$('.imdbwp__meta').find('span').eq(2).text().trim()
+        var movieImdbrating=$('div.single_post > div > div.thecontent.clearfix > div.imdbwp.imdbwp--movie.dark > div.imdbwp__content > div.imdbwp__belt > span.imdbwp__star').text().trim()
         var movieDirector=$('.imdbwp__footer').find('span').eq(0).text().trim()
         var movieCreator=$('.imdbwp__footer').find('span').eq(1).text().trim()
         var movieActors=$('.imdbwp__footer').find('span').eq(2).text().trim()
@@ -57,19 +58,21 @@ app.get('/movie/*',(req,res)=>{
         var imgTwo=$('div.single_post > div > div.thecontent.clearfix > figure:nth-child(14)').find('img').attr('src')
         var imgThree=$('div.single_post > div > div.thecontent.clearfix > figure:nth-child(15)').find('img').attr('src')
         var imgFour=$('div.single_post > div > div.thecontent.clearfix > figure:nth-child(16)').find('img').attr('src')
+        var dataArray=[imgOne,imgTwo,imgThree,imgFour]
+        var movieImages = dataArray.filter(function( element ) {
+            return element !== undefined;
+         });
         var data={
             "movieName":movieName,
             "movieRuntime":movieRuntime,
-            "moiveGenre":moiveGenre,
+            "moiveGenre":movieGenre,
+            "movieImdbrating":movieImdbrating,
             "movieCreator":movieCreator,
             "movieYear":movieYear,
             "movieDirector":movieDirector,
             "movieActors":movieActors,
             "moviePlot":moviePlot,
-            "imgOne":imgOne,
-            "imgTwo":imgTwo,
-            "imgThree":imgThree,
-            "imgFour":imgFour,
+            "movieImages":movieImages,
         }
         res.json(data)
     })
