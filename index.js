@@ -62,6 +62,14 @@ app.get('/movie/*',(req,res)=>{
         var movieImages = dataArray.filter(function( element ) {
             return element !== undefined;
          });
+         var movie480p=$('span[class="maxbutton-3-container mb-container"]').eq(0).find('a').attr('href')
+         var movie720p=$('span[class="maxbutton-3-container mb-container"]').eq(1).find('a').attr('href')
+         var movie1080p=$('span[class="maxbutton-3-container mb-container"]').eq(2).find('a').attr('href')
+         var links={
+             "movie480p":movie480p,
+             "movie720p":movie720p,
+             "movie1080p":movie1080p
+         }
         var data={
             "movieName":movieName,
             "movieRuntime":movieRuntime,
@@ -73,6 +81,7 @@ app.get('/movie/*',(req,res)=>{
             "movieActors":movieActors,
             "moviePlot":moviePlot,
             "movieImages":movieImages,
+            "movieLinks":links
         }
         res.json(data)
     })
