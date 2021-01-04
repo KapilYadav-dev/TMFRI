@@ -1,0 +1,19 @@
+{
+  "name": "imdbwebscrapping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kaydev",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6",
+    "promise": "^8.1.0",
+    "request": "^2.88.2"
+  }
+}
