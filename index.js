@@ -16,7 +16,8 @@ app.get('/movies/:pageNumber',(req,res)=>{
         console.log(card.length)
         card.each(function (i, e) {
             var a=$(this)
-            title = a.find('a').text().trim();
+            var query='#content_box > article:nth-child('+(i+1)+') > header > h2'
+            title = $(query).find('a').text()
             img=a.find('.featured-thumbnail img').attr('src')
             weburl=a.find('a').attr('href')
             titlelist[i]=title
