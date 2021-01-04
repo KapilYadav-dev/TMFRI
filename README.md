@@ -6,6 +6,9 @@ As we all know, need is the mother of invention. So being a front-end developer,
 So, using this API you can get a jsonarry of new movies with all necessary details and even their downloading links...
 
 # Example Response
+
+![alt text](https://raw.githubusercontent.com/KapilYadav-dev/TMFRI/master/left.png)
+
 # <b>/movies/{pageNumber}<b>
 <div class="highlight highlight-source-groovy"><pre>[
 {
@@ -109,7 +112,10 @@ So, using this API you can get a jsonarry of new movies with all necessary detai
 "url": "https://themoviesflix.co/download-blue-valentine-2010-hindi-english-480p-720p/"
 }
 ]</pre></div>
-  
+
+
+![alt text](https://raw.githubusercontent.com/KapilYadav-dev/TMFRI/master/right.png)
+
 # <b> /movie/{url}<b>
 <div class="highlight highlight-source-groovy"><pre>
 {
@@ -130,6 +136,4 @@ So, using this API you can get a jsonarry of new movies with all necessary detai
 }
 }
 </pre></div>
-![alt text](https://raw.githubusercontent.com/KapilYadav-dev/TMFRI/master/left.png)
-
-![alt text](https://raw.githubusercontent.com/KapilYadav-dev/TMFRI/master/right.png)
+ 
