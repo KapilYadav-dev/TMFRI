@@ -7,6 +7,9 @@ var title,img,weburl
 var titlelist=[],imglist=[],urllist=[]
 var data=[]
 
+app.get('/',(req,res)=>{
+    res.send("Hello...")
+})
 app.get('/movies/:pageNumber',(req,res)=>{
     var url=baseurl+'page/'+req.params.pageNumber
     request(url,async (error,response,html)=>{
@@ -163,8 +166,8 @@ app.get('/movies/:category/:pageNumber',(req,res)=>{
         })})
         
     
-app.listen(8000,()=>{
-    console.log("Server running on port 8000")
+app.listen(process.env.PORT,()=>{
+    console.log("Server running on port "+process.env.PORT)
 })
 
 function empty() {
