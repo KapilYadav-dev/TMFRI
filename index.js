@@ -52,7 +52,6 @@ app.get('/movie/*',(req,res)=>{
     request(url,async (error,response,html)=>{
         if(error) return error
         
-    
         var $=cheerio.load(html)
         var movieName=$('.imdbwp__title').text().trim()
         var movieRuntime=$('.imdbwp__meta').find('span').eq(0).text().trim()
@@ -123,11 +122,46 @@ app.get('/movies/:category/:pageNumber',(req,res)=>{
             data.push(obj)
         }
         console.log(response.statusCode);
-        if(data!=null && data.length>0) res.status(200).json({"pageNumber":req.params.pageNumber,"data":data})
+        if(data!=null && data.length>0) res.status(200).json({"pageNumber":req.params.pageNumber,"category":req.params.category,"data":data})
         else if(response.statusCode==500) res.status(500).json({"pageNumber":req.params.pageNumber,"data":"Website is down..."})
         else if(response.statusCode==404) res.status(404).json({"pageNumber":req.params.pageNumber,"data":"Page doesn't exist or Invalid Category..."})
         empty()
     })})
+
+    app.get('/searchMovies/:searchText/:pageNumber',(req,res)=>{
+        var url=baseurl+"page/"+req.params.pageNumber+'/?s='+req.params.searchText
+        console.log(req.params.pageNumber+req.params.searchText);
+        request(url,async (error,response,html)=>{
+            console.log(url);
+            if(error) return error
+            var $=cheerio.load(html)
+            var card=$('#content_box ').find('article')
+            card.each(function (i, e) {
+                var a=$(this)
+                var query='#content_box > article:nth-child('+(i+2)+') > header > h2'
+                title = $(query).find('a').text()
+                img=a.find('.featured-thumbnail img').attr('src')
+                weburl=a.find('a').attr('href')
+                titlelist[i]=title
+                imglist[i]=img
+                urllist[i]=weburl
+            })
+            for(var i=0;i<titlelist.length;i++)
+            {
+                var obj={
+                    'title':titlelist[i],
+                    'img':imglist[i],
+                    'url':urllist[i]
+                }
+                data.push(obj)
+            }
+            console.log(response.statusCode);
+            if(data!=null && data.length>0) res.status(200).json({"pageNumber":req.params.pageNumber,"searchQuery":req.params.searchText,"data":data})
+            else if(response.statusCode==500) res.status(500).json({"pageNumber":req.params.pageNumber,"data":"Website is down..."})
+            else if(response.statusCode==404) res.status(404).json({"pageNumber":req.params.pageNumber,"data":"Page doesn't exist or Invalid Category..."})
+            empty()
+        })})
+        
     
 app.listen(8000,()=>{
     console.log("Server running on port 8000")
