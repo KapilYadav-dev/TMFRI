@@ -8,7 +8,7 @@ var titlelist=[],imglist=[],urllist=[]
 var data=[]
 
 app.get('/',(req,res)=>{
-    res.send("Hello...")
+    res.json({"all movies":"/movies/{pageNumber}","to search  movies":"/searchMovies/{searchText}/{pageNumber}","to sort movies by cateogry":"/movies/{category}/{pageNumber}","get detail about a particular movie":"/movie/{url}"})
 })
 app.get('/movies/:pageNumber',(req,res)=>{
     var url=baseurl+'page/'+req.params.pageNumber
@@ -166,7 +166,7 @@ app.get('/movies/:category/:pageNumber',(req,res)=>{
         })})
         
     
-app.listen(process.env.PORT,()=>{
+app.listen(process.env.PORT ,()=>{
     console.log("Server running on port "+process.env.PORT)
 })
 
