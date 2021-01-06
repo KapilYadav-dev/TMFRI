@@ -4,11 +4,12 @@ const request = require('request')
 const cheerio = require('cheerio')
 var baseurl="https://themoviesflix.co/"
 var title,img,weburl
+var path = require('path');
 var titlelist=[],imglist=[],urllist=[]
 var data=[]
 
 app.get('/',(req,res)=>{
-    res.json({"all movies":"/movies/{pageNumber}","to search  movies":"/searchMovies/{searchText}/{pageNumber}","to sort movies by cateogry":"/movies/{category}/{pageNumber}","get detail about a particular movie":"/movie/{url}"})
+    res.sendFile(path.join(__dirname + '/index.html'));
 })
 app.get('/movies/:pageNumber',(req,res)=>{
     var url=baseurl+'page/'+req.params.pageNumber
@@ -16,14 +17,6 @@ app.get('/movies/:pageNumber',(req,res)=>{
         if(error) return error
         var $=cheerio.load(html)
         var card=$('#content_box ').find('article')
-       /*For getting category
-        var categoryCard=$('#menu-item-41 > ul').find('a')
-        categoryCard.each(function(i,e)
-        {
-            var a=$(this)
-            var category=a.text().trim()
-            console.log(category);
-        })*/
         card.each(function (i, e) {
             var a=$(this)
             var query='#content_box > article:nth-child('+(i+1)+') > header > h2'
@@ -166,8 +159,8 @@ app.get('/movies/:category/:pageNumber',(req,res)=>{
         })})
         
     
-app.listen(process.env.PORT ,()=>{
-    console.log("Server running on port "+process.env.PORT)
+app.listen(process.env.PORT||8080,()=>{
+    console.log("Server running on port "+process.env.PORT||8080)
 })
 
 function empty() {
