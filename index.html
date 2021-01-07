@@ -1,36 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>TMFRI API</title>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <title>TMFRI API</title>
 </head>
-
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-dark bg-success" >
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://www.flaticon.com/svg/static/icons/svg/2798/2798007.svg" alt="" width="30" height="24"
-                    class="d-inline-block align-top">
-                    TMFRI API
-            </a>
+            <a class="navbar-brand" href="#" style="font-family: 'Fredoka One', cursive;"> <img src="https://www.flaticon.com/svg/static/icons/svg/2798/2798007.svg" alt="" width="30" height="30"class="d-inline-block align-top"/>TheMovieFlix API</a>
         </div>
     </nav>
-    <div class="container mt-4 text-justified">
-        <h2 style="font-size: 4rem; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Welcome to TMFRI API</h2>
-        <h5 style="font-size: 2rem;">Use the following paths </h5>
+    <div class="container mt-4 justify-content-center text-justified ">
+        <h2 style="font-size: 3.5rem; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Welcome to TheMovieFlix🍅 API</h2>
+        <h5 style="font-size: 2rem;color: grey;">Use the following path to use API </h5>
         <div class="container mt-4 text-justified" style="font-family: 'Average Sans', sans-serif; font-size: 1.5rem;">
-            <li><b>all movies: </b>"/movies/{pageNumber}"<br></li>
-              <li><b>to search  movies:</b> "/searchMovies/{searchText}/{pageNumber}"<br></li>
-               <li><b>to sort movies by cateogry:</b> "/movies/{category}/{pageNumber}"<br></li>
-                <li><b>get detail about a particular movie:</b> "/movie/{url}"<br></li>
+            <li><b>All movies: </b>"/movies/{pageNumber}"<br></li>
+              <li><b>To search  movies:</b> "/searchMovies/{searchText}/{pageNumber}"<br></li>
+               <li><b>To sort movies by category:</b> "/movies/{category}/{pageNumber}"<br></li>
+                <li><b>Get detail about a particular movie:</b> "/movie/{url}"<br></li>
         </div>
     </div>
+    <div class="container-xl alert alert-success mt-5">
+       Made by <strong>MrKayDev  </strong>||  Visit <a href="https://github.com/KapilYadav-dev">Github</a> for more projects.
+      </div>
 </body>
 
 </html>
